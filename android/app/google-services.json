@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "297418099135",
+    "project_id": "path-tracker-app-d2789",
+    "storage_bucket": "path-tracker-app-d2789.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:297418099135:android:0a48a563e74874b4a3f90a",
+        "android_client_info": {
+          "package_name": "com.example.path_tracker_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEJqQfsmGMRUuBSKmZFmpmrnXKWfuKfgE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
