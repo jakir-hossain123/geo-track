@@ -1,25 +1,30 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:path_tracker_app/Pages/auth_services.dart';
+import 'package:path_tracker_app/firebase_options.dart';
+import 'package:path_tracker_app/models/walk_data.dart';
 
-import 'Pages/auth_page.dart';
+
 
 void main () async{
   WidgetsFlutterBinding.ensureInitialized();
-  try {
-    await Firebase.initializeApp();
-    print('Firebase successfully initialized');
 
-  }
-  catch (e){
-    print("Firebase initializing  failed : $e");
-  }
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  // initialize hive
-  WidgetsFlutterBinding.ensureInitialized();
+  // Hive Initialization and Setup
   await Hive.initFlutter();
 
-  runApp(Myapp());
+  // LatLngAdapterAdapter
+  Hive.registerAdapter<LatLngAdapter>(LatLngAdapterAdapter());
+
+  // WalkData adaptor register
+  Hive.registerAdapter<WalkData>(WalkDataAdapter());
+
+  // hu=ive box open
+  await Hive.openBox<WalkData>('walks');
+
+  runApp(const Myapp());
 }
 class Myapp extends StatelessWidget {
   const Myapp({super.key});
@@ -27,12 +32,12 @@ class Myapp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Path Tracker',
+      title: 'Walking Path Tracker',
       theme: ThemeData(
         colorScheme:ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
 
-     home: const AuthPage(),
+      home: const AuthServices(),
     );
   }
 }
